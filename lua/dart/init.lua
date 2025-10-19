@@ -99,6 +99,9 @@ M.config = {
     -- See `:h winborder` for options
     border = 'rounded',
     select_mapping = '<CR>',
+    -- window highlights
+    -- See `:h winhighlight` for options
+    winhighlight = 'Normal:Normal,FloatTitle:FloatTitle,FloatBorder:FloatBorder',
   },
 
   -- State persistence. Use Dart.read_session and Dart.write_session manually
@@ -820,7 +823,7 @@ Dart.pick = function()
     hl_group = 'DartPickLabel',
   })
 
-  vim.api.nvim_open_win(buf, true, {
+  local win = vim.api.nvim_open_win(buf, true, {
     relative = 'editor',
     width = row_len + 2,
     height = #M.state + 2,
@@ -831,6 +834,10 @@ Dart.pick = function()
     border = M.config.picker.border,
     focusable = true,
   })
+  -- set winhighlight option
+  if M.config.picker.winhighlight ~= nil then
+    vim.api.nvim_set_option_value('winhighlight', M.config.picker.winhighlight, { win = win })
+  end
 end
 
 Dart.next = function()

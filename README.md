@@ -143,6 +143,9 @@ require('dart').setup({})
     -- border style for the picker window
     -- See `:h winborder` for options
     border = 'rounded',
+    -- window highlights
+    -- See `:h winhighlight` for options
+    winhighlight = "Normal:Normal,FloatTitle:FloatTitle,FloatBorder:FloatBorder"
   },
 
   -- State persistence. Use Dart.read_session and Dart.write_session manually
